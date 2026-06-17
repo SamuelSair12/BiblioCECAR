@@ -1,0 +1,111 @@
+.bienvenida {
+    background-color: #e8f0fc;
+    border-left: 4px solid #2660c2;
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: #1a3c72;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.grilla-indicadores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.tarjeta-indicador {
+    border-radius: 5px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid transparent;
+}
+
+.tarjeta-indicador.azul {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.tarjeta-indicador.verde {
+    background-color: #dcfce7;
+    border-color: #86efac;
+}
+
+.tarjeta-indicador.amarillo {
+    background-color: #fef9c3;
+    border-color: #fde047;
+}
+
+.tarjeta-indicador.gris {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.indicador-icono {
+    font-size: 30px;
+    min-width: 36px;
+    text-align: center;
+}
+
+.indicador-datos {
+    display: flex;
+    flex-direction: column;
+}
+
+.indicador-numero {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a3c72;
+    line-height: 1.1;
+}
+
+.indicador-texto {
+    font-size: 12px;
+    color: #555;
+    margin-top: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.grilla-accesos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.boton-acceso {
+    background-color: #f4f4f9;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 16px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #1a3c72;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.boton-acceso:hover {
+    background-color: #e8f0fc;
+    border-color: #93c5fd;
+}
+
+.boton-acceso .acceso-icono {
+    font-size: 26px;
+}
+
+.boton-acceso .acceso-texto {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}

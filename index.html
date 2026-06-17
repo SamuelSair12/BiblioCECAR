@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Inicio</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-contenido">
+
+            <div class="logo-nav">Biblio<span class="logo-acento">CECAR</span></div>
+
+            <nav>
+                <ul class="nav-enlaces">
+                    <li><a href="#modulos">Módulos</a></li>
+                    <li><a href="#acerca">Acerca de</a></li>
+                    <li id="nav-perfil" class="nav-oculto">
+                        <a href="html/perfil.html">Mi Perfil</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="nav-acciones">
+                <span id="saludo-usuario" class="saludo-usuario"></span>
+                <button id="btn-login"
+                        class="btn-nav-login"
+                        onclick="window.location.href = 'html/login.html'">
+                    Iniciar Sesión
+                </button>
+                <button id="btn-panel"
+                        class="btn-nav-panel nav-oculto"
+                        onclick="irAlPanel()">
+                    Ir al Panel
+                </button>
+                <button id="btn-salir"
+                        class="btn-nav-salir nav-oculto"
+                        onclick="cerrarSesionIndex()">
+                    Salir
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <div id="aviso-invitado" class="aviso-invitado nav-oculto">
+        🔒 Estás en <strong>modo visitante</strong>. Inicia sesión para acceder a todas las funcionalidades del sistema.
+        <button class="btn-aviso-login" onclick="window.location.href = 'html/login.html'">
+            Iniciar sesión
+        </button>
+    </div>
+
+    <section class="hero">
+        <div class="hero-contenido">
+            <span class="hero-etiqueta">Sistema de Gestión Bibliotecaria · CECAR 2026</span>
+            <h1 class="hero-titulo">
+                Bienvenido a <span class="hero-acento">BiblioCECAR</span>
+            </h1>
+            <p class="hero-descripcion">
+                Plataforma web para la administración integral de la biblioteca de la
+                Corporación Universitaria del Caribe. Gestiona libros, clientes,
+                inventario y ventas desde un solo lugar.
+            </p>
+            <div class="hero-botones">
+                <button class="btn-hero-primario" onclick="irAlPanel()">
+                    Ingresar al Sistema
+                </button>
+                <a href="#modulos" class="btn-hero-secundario">Ver módulos ↓</a>
+            </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <div class="hero-icono">📚</div>
+        </div>
+    </section>
+
+    <section class="seccion-modulos" id="modulos">
+        <div class="seccion-contenido">
+
+            <h2 class="seccion-titulo">Módulos del Sistema</h2>
+            <p class="seccion-subtitulo">
+                Accede a las herramientas de gestión según tu rol asignado.
+            </p>
+
+            <div class="grid-modulos">
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">🏠</div>
+                    <h3>Panel Principal</h3>
+                    <p>Visualiza indicadores generales, resumen de libros, ventas e inventario en tiempo real.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/dashboard.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">👥</div>
+                    <h3>Usuarios</h3>
+                    <p>Registra, edita y activa cuentas de usuario. Controla roles: Administrador, Bibliotecario e Invitado.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/usuarios.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">📖</div>
+                    <h3>Libros</h3>
+                    <p>Administra el catálogo de libros: registro, búsqueda por nombre, nivel o edición y consulta de stock.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/libros.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">🧑‍💼</div>
+                    <h3>Clientes</h3>
+                    <p>Gestiona la base de clientes de la biblioteca: registro, búsqueda y actualización de datos de contacto.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/clientes.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">📥</div>
+                    <h3>Ingresos</h3>
+                    <p>Registra entradas de libros al inventario por lote. Consulta el historial filtrando por fechas o lote.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/ingresos.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">📦</div>
+                    <h3>Inventario</h3>
+                    <p>Consulta el stock general o por lote. Identifica de forma visual los libros con existencias bajas o agotadas.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/inventario.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">🛒</div>
+                    <h3>Ventas</h3>
+                    <p>Registra ventas seleccionando cliente y libros. Busca el historial por rango de fechas o cliente.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/ventas.html')">
+                        Acceder
+                    </button>
+                </article>
+
+                <article class="tarjeta-modulo">
+                    <div class="modulo-icono">🏷️</div>
+                    <h3>Lotes</h3>
+                    <p>Crea y consulta los lotes asociados a libros e ingresos de inventario para una trazabilidad completa.</p>
+                    <button class="btn-modulo" onclick="accederModulo('html/lotes.html')">
+                        Acceder
+                    </button>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-acerca" id="acerca">
+        <div class="seccion-contenido">
+
+            <h2 class="seccion-titulo claro">Acerca del Proyecto</h2>
+            <p class="seccion-subtitulo claro">
+                BiblioCECAR es un proyecto académico desarrollado para la asignatura
+                Programación y Tecnologías Web I.
+            </p>
+
+            <div class="acerca-grid">
+
+                <div class="acerca-bloque">
+                    <h3>🎯 Objetivo</h3>
+                    <p>
+                        Desarrollar una aplicación web frontend que consuma una API REST
+                        para la gestión integral de la biblioteca de CECAR, aplicando
+                        buenas prácticas de desarrollo web.
+                    </p>
+                </div>
+
+                <div class="acerca-bloque">
+                    <h3>🛠️ Tecnologías</h3>
+                    <ul class="lista-tecnologias">
+                        <li>HTML5 semántico</li>
+                        <li>CSS3 · Flexbox · Grid</li>
+                        <li>JavaScript ES2024 (Vanilla)</li>
+                        <li>API REST · Fetch</li>
+                        <li>GitHub Pages · Docker</li>
+                    </ul>
+                </div>
+
+                <div class="acerca-bloque">
+                    <h3>👨‍💻 Equipo Desarrollador</h3>
+                    <ul class="lista-equipo">
+                        <li><strong>Samuel Osorio</strong> – Líder / Tester</li>
+                        <li><strong>Roberto Soto</strong> – Diseño Gráfico</li>
+                        <li><strong>Victor Tapia</strong> – Maquetado Web</li>
+                        <li><strong>Mateo Tapia</strong> – Programador</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-contenido">
+            <div class="footer-logo">Biblio<span class="logo-acento">CECAR</span></div>
+            <p class="footer-texto">
+                Corporación Universitaria del Caribe · Facultad de Ciencias Básicas,
+                Ingeniería y Arquitectura · Ingeniería de Sistemas · Sincelejo 2026
+            </p>
+            <p class="footer-licencia">
+                Distribuido bajo <strong>Licencia MIT</strong> ·
+                © 2026 Samuel Osorio, Roberto Soto, Victor Tapia, Mateo Tapia
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

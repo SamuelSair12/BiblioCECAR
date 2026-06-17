@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Panel Principal</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+
+        <nav>
+            <ul>
+                <li id="menu-dashboard" class="activo">
+                    <a href="dashboard.html">
+                        <span class="icono-menu">🏠</span> Panel Principal
+                    </a>
+                </li>
+                <li id="menu-usuarios">
+                    <a href="usuarios.html">
+                        <span class="icono-menu">👥</span> Usuarios
+                    </a>
+                </li>
+                <li id="menu-libros">
+                    <a href="libros.html">
+                        <span class="icono-menu">📚</span> Libros
+                    </a>
+                </li>
+                <li id="menu-clientes">
+                    <a href="clientes.html">
+                        <span class="icono-menu">🧑‍💼</span> Clientes
+                    </a>
+                </li>
+                <li id="menu-ingresos">
+                    <a href="ingresos.html">
+                        <span class="icono-menu">📥</span> Ingresos
+                    </a>
+                </li>
+                <li id="menu-inventario">
+                    <a href="inventario.html">
+                        <span class="icono-menu">📦</span> Inventario
+                    </a>
+                </li>
+                <li id="menu-ventas">
+                    <a href="ventas.html">
+                        <span class="icono-menu">🛒</span> Ventas
+                    </a>
+                </li>
+                <li id="menu-lotes">
+                    <a href="lotes.html">
+                        <span class="icono-menu">🏷️</span> Lotes
+                    </a>
+                </li>
+                <div class="separador-menu">Cuenta</div>
+                <li>
+                    <a href="perfil.html">
+                        <span class="icono-menu">👤</span> Mi Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="cerrarSesion()">
+                        <span class="icono-menu">🚪</span> Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Panel Principal</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="bienvenida" class="bienvenida"></div>
+
+            <div class="grilla-indicadores">
+
+                <div class="tarjeta-indicador azul">
+                    <div class="indicador-icono">📚</div>
+                    <div class="indicador-datos">
+                        <span class="indicador-numero" id="total-libros">—</span>
+                        <span class="indicador-texto">Total de Libros</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta-indicador verde">
+                    <div class="indicador-icono">🛒</div>
+                    <div class="indicador-datos">
+                        <span class="indicador-numero" id="ventas-hoy">—</span>
+                        <span class="indicador-texto">Ventas del Día</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta-indicador amarillo">
+                    <div class="indicador-icono">📦</div>
+                    <div class="indicador-datos">
+                        <span class="indicador-numero" id="stock-disponible">—</span>
+                        <span class="indicador-texto">Stock Disponible</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta-indicador gris">
+                    <div class="indicador-icono">🧑‍💼</div>
+                    <div class="indicador-datos">
+                        <span class="indicador-numero" id="total-clientes">—</span>
+                        <span class="indicador-texto">Total Clientes</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Acceso Rápido a Módulos</p>
+                <div class="grilla-accesos" id="grilla-accesos">
+                    
+                </div>
+            </div>
+
+            <div class="tarjeta" id="seccion-ventas-recientes">
+                <p class="tarjeta-titulo">Últimas Ventas Registradas</p>
+                <div id="msg-dashboard" class="msg-advertencia" style="display:none"></div>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>Comprobante</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-ventas-recientes">
+                            <tr class="sin-registros">
+                                <td colspan="4">Cargando datos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/dashboard.js"></script>
+
+</body>
+</html>

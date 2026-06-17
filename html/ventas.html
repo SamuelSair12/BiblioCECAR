@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Ventas</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/ventas.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas" class="activo"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Gestión de Ventas</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-ventas" class="msg-exito"></div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Registrar Nueva Venta</p>
+
+                <div class="fila-2">
+                    <div class="campo">
+                        <label>Cliente <span style="color:red">*</span></label>
+                        <select id="venta-cliente">
+                            <option value="">-- Seleccione un cliente --</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>N° Comprobante <span style="color:red">*</span></label>
+                        <input type="text" id="venta-comprobante" placeholder="Generado automáticamente" readonly>
+                        <button class="btn-secundario" style="margin-top:5px; font-size:12px;" onclick="generarComprobante()">Generar</button>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label>Observaciones</label>
+                    <textarea id="venta-observaciones" rows="2" placeholder="Notas adicionales sobre la venta..."></textarea>
+                </div>
+
+                <div class="separador-seccion">Ítems de Venta</div>
+
+                <div class="fila-agregar-item">
+                    <div class="campo" style="flex:2">
+                        <label>Libro</label>
+                        <select id="item-libro">
+                            <option value="">-- Seleccione --</option>
+                        </select>
+                    </div>
+                    <div class="campo" style="flex:1">
+                        <label>Lote</label>
+                        <select id="item-lote">
+                            <option value="">-- Lote --</option>
+                        </select>
+                    </div>
+                    <div class="campo" style="flex:0 0 100px">
+                        <label>Cantidad</label>
+                        <input type="number" id="item-cantidad" placeholder="1" min="1" value="1">
+                    </div>
+                    <div style="padding-top:22px;">
+                        <button class="btn-exito" onclick="agregarItem()">+ Agregar</button>
+                    </div>
+                </div>
+
+                <div id="contenedor-items">
+                    <table class="tabla-datos tabla-items" id="tabla-items">
+                        <thead>
+                            <tr>
+                                <th>Libro</th>
+                                <th>Lote</th>
+                                <th>Cantidad</th>
+                                <th>Quitar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items-body">
+                            <tr class="sin-registros"><td colspan="4">Aún no hay ítems agregados.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="msg-form-venta" class="msg-error"></div>
+
+                <div style="text-align:right; margin-top:12px;">
+                    <button class="btn-secundario" onclick="limpiarVenta()" style="margin-right:8px;">Limpiar</button>
+                    <button class="btn-primario"   onclick="registrarVenta()">Registrar Venta</button>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Historial de Ventas</p>
+
+                <div class="barra-herramientas">
+                    <div class="grupo-busqueda">
+                        <label style="font-size:12px;font-weight:700;color:#444">Desde:</label>
+                        <input type="date" id="filtro-fecha-ini-v">
+                        <label style="font-size:12px;font-weight:700;color:#444">Hasta:</label>
+                        <input type="date" id="filtro-fecha-fin-v">
+                        <input type="text" id="filtro-cliente-v" placeholder="Cliente...">
+                        <button class="btn-secundario" onclick="filtrarVentas()">Filtrar</button>
+                        <button class="btn-secundario" onclick="limpiarFiltros()">Ver todos</button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Comprobante</th>
+                                <th>Cliente</th>
+                                <th>Observaciones</th>
+                                <th>Fecha</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-ventas-body">
+                            <tr class="sin-registros"><td colspan="6">Cargando ventas...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/ventas.js"></script>
+
+</body>
+</html>

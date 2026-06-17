@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Lotes</title>
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes" class="activo"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Gestión de Lotes</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-lotes" class="msg-exito"></div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Registrar Nuevo Lote</p>
+
+                <div class="fila-2">
+                    <div class="campo">
+                        <label>Código de Lote <span style="color:red">*</span></label>
+                        <input type="text" id="lote-codigo" placeholder="Ej: LOTE-2026-001" maxlength="50">
+                    </div>
+                    <div style="padding-top: 22px;">
+                        <button class="btn-primario" onclick="crearLote()">Registrar Lote</button>
+                    </div>
+                </div>
+
+                <div id="msg-form-lote" class="msg-error" style="margin-top:8px;"></div>
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Lotes Registrados</p>
+
+                <div class="barra-herramientas">
+                    <div class="grupo-busqueda">
+                        <input type="text" id="buscar-lote" placeholder="Buscar código de lote...">
+                        <button class="btn-secundario" onclick="buscarLotes()">Buscar</button>
+                        <button class="btn-secundario" onclick="limpiarBusqueda()">Ver todos</button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Código de Lote</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-lotes-body">
+                            <tr class="sin-registros"><td colspan="3">Cargando lotes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/lotes.js"></script>
+
+</body>
+</html>

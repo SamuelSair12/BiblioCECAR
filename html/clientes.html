@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Clientes</title>
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes" class="activo"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Gestión de Clientes</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-clientes" class="msg-exito"></div>
+
+            <div class="barra-herramientas">
+                <div class="grupo-busqueda">
+                    <input type="text" id="buscar-cliente" placeholder="Buscar por nombre...">
+                    <input type="text" id="buscar-identificacion" placeholder="Identificación...">
+                    <button class="btn-secundario" onclick="buscarClientes()">Buscar</button>
+                    <button class="btn-secundario" onclick="limpiarBusqueda()">Limpiar</button>
+                </div>
+                <button class="btn-primario" onclick="abrirModalCrear()">+ Nuevo Cliente</button>
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Listado de Clientes</p>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Identificación</th>
+                                <th>Nombres</th>
+                                <th>Correo</th>
+                                <th>Celular</th>
+                                <th>F. Nacimiento</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-clientes-body">
+                            <tr class="sin-registros"><td colspan="7">Cargando clientes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<div class="overlay-modal" id="modal-cliente">
+    <div class="caja-modal">
+        <div class="encabezado-modal">
+            <h3 id="titulo-modal-cliente">Nuevo Cliente</h3>
+            <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+        </div>
+        <div class="cuerpo-modal">
+            <input type="hidden" id="cliente-id">
+
+            <div class="fila-2">
+                <div class="campo">
+                    <label>Identificación <span style="color:red">*</span></label>
+                    <input type="text" id="cliente-identificacion" placeholder="Cédula o ID">
+                </div>
+                <div class="campo">
+                    <label>Nombres <span style="color:red">*</span></label>
+                    <input type="text" id="cliente-nombres" placeholder="Nombre completo">
+                </div>
+            </div>
+
+            <div class="fila-2">
+                <div class="campo">
+                    <label>Correo Electrónico <span style="color:red">*</span></label>
+                    <input type="email" id="cliente-correo" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="campo">
+                    <label>Celular</label>
+                    <input type="text" id="cliente-celular" placeholder="300 000 0000">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label>Fecha de Nacimiento</label>
+                <input type="date" id="cliente-fecha-nacimiento">
+            </div>
+
+            <div id="msg-modal-cliente" class="msg-error"></div>
+        </div>
+        <div class="pie-modal">
+            <button class="btn-secundario" onclick="cerrarModal()">Cancelar</button>
+            <button class="btn-primario"   onclick="guardarCliente()">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/clientes.js"></script>
+
+</body>
+</html>

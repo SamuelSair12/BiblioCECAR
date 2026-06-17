@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Libros</title>
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros" class="activo"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Gestión de Libros</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-libros" class="msg-exito"></div>
+
+            <div class="barra-herramientas">
+                <div class="grupo-busqueda">
+                    <input type="text" id="buscar-libro" placeholder="Buscar por nombre...">
+                    <input type="text" id="buscar-nivel" placeholder="Nivel...">
+                    <input type="text" id="buscar-edicion" placeholder="Edición...">
+                    <button class="btn-secundario" onclick="buscarLibros()">Buscar</button>
+                    <button class="btn-secundario" onclick="limpiarBusqueda()">Limpiar</button>
+                </div>
+                <button class="btn-primario" id="btn-nuevo-libro" onclick="abrirModalCrear()">+ Nuevo Libro</button>
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Catálogo de Libros</p>
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Nivel</th>
+                                <th>Tipo</th>
+                                <th>Edición</th>
+                                <th>Unidades</th>
+                                <th>Lote</th>
+                                <th>V. Compra</th>
+                                <th>V. Venta</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-libros-body">
+                            <tr class="sin-registros"><td colspan="10">Cargando libros...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<div class="overlay-modal" id="modal-libro">
+    <div class="caja-modal modal-grande">
+        <div class="encabezado-modal">
+            <h3 id="titulo-modal-libro">Nuevo Libro</h3>
+            <button class="btn-cerrar-modal" onclick="cerrarModal()">✕</button>
+        </div>
+        <div class="cuerpo-modal">
+            <input type="hidden" id="libro-id">
+
+            <div class="fila-2">
+                <div class="campo">
+                    <label>Nombre del Libro <span style="color:red">*</span></label>
+                    <input type="text" id="libro-nombre" placeholder="Título del libro">
+                </div>
+                <div class="campo">
+                    <label>Nivel</label>
+                    <input type="text" id="libro-nivel" placeholder="Ej: Básico, Universitario">
+                </div>
+            </div>
+
+            <div class="fila-3">
+                <div class="campo">
+                    <label>Tipo</label>
+                    <input type="number" id="libro-tipo" placeholder="Código de tipo">
+                </div>
+                <div class="campo">
+                    <label>Edición</label>
+                    <input type="text" id="libro-edicion" placeholder="Ej: 3ra">
+                </div>
+                <div class="campo">
+                    <label>Unidades <span style="color:red">*</span></label>
+                    <input type="number" id="libro-unidades" placeholder="0" min="0">
+                </div>
+            </div>
+
+            <div class="fila-3">
+                <div class="campo">
+                    <label>Lote</label>
+                    <select id="libro-lote">
+                        <option value="">-- Sin lote --</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label>Valor de Compra</label>
+                    <input type="number" id="libro-valor-compra" placeholder="0.00" min="0" step="0.01">
+                </div>
+                <div class="campo">
+                    <label>Valor de Venta <span style="color:red">*</span></label>
+                    <input type="number" id="libro-valor-venta" placeholder="0.00" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div id="msg-modal-libro" class="msg-error"></div>
+        </div>
+        <div class="pie-modal">
+            <button class="btn-secundario" onclick="cerrarModal()">Cancelar</button>
+            <button class="btn-primario"   onclick="guardarLibro()" id="btn-guardar-libro">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/libros.js"></script>
+
+</body>
+</html>

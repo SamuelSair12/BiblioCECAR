@@ -1,0 +1,64 @@
+.fila-sin-stock {
+    background-color: #ffeaea !important;
+}
+
+.fila-sin-stock td {
+    color: #721c24;
+}
+
+.fila-stock-bajo {
+    background-color: #fffbea !important;
+}
+
+.fila-stock-bajo td {
+    color: #856404;
+}
+
+.grilla-resumen-inv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.tarjeta-resumen-inv {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 16px;
+    text-align: center;
+}
+
+.tarjeta-resumen-inv .num {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a3c72;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.tarjeta-resumen-inv .etq {
+    font-size: 12px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.tarjeta-resumen-inv.alerta {
+    border-color: #f0a500;
+    background-color: #fffbea;
+}
+
+.tarjeta-resumen-inv.alerta .num {
+    color: #856404;
+}
+
+.tarjeta-resumen-inv.critico {
+    border-color: #dc3545;
+    background-color: #ffeaea;
+}
+
+.tarjeta-resumen-inv.critico .num {
+    color: #721c24;
+}

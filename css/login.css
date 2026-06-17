@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #003cac;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pantalla-login {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.tarjeta-login {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 36px 36px 28px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logo-login {
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.icono-logo {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.logo-login h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a3c72;
+    letter-spacing: 0.5px;
+}
+
+.logo-login h1 span {
+    color: #f0a500;
+}
+
+.logo-login p {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+}
+
+.campo {
+    margin-bottom: 14px;
+}
+
+.campo label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background-color: #fdfdfd;
+    transition: border-color 0.2s;
+}
+
+.campo input:focus,
+.campo select:focus {
+    outline: none;
+    border-color: #2660c2;
+    box-shadow: 0 0 0 2px rgba(38, 96, 194, 0.12);
+}
+
+.msg-login {
+    padding: 9px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 14px;
+    display: none;
+    text-align: center;
+}
+
+.msg-login.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+.msg-login.exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.btn-ingresar {
+    width: 100%;
+    padding: 11px;
+    background-color: #1a3c72;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-ingresar:hover {
+    background-color: #2660c2;
+}
+
+.btn-ingresar:disabled {
+    background-color: #8a9fc2;
+    cursor: not-allowed;
+}
+
+.version-sistema {
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 18px;
+}

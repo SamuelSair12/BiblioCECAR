@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Ingresos de Inventario</title>
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos" class="activo"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Ingresos de Inventario</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-ingresos" class="msg-exito"></div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Registrar Nuevo Ingreso de Libros</p>
+
+                <div class="fila-2">
+                    <div class="campo">
+                        <label>Libro <span style="color:red">*</span></label>
+                        <select id="ingreso-libro">
+                            <option value="">-- Seleccione un libro --</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>Lote <span style="color:red">*</span></label>
+                        <select id="ingreso-lote">
+                            <option value="">-- Seleccione un lote --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila-3">
+                    <div class="campo">
+                        <label>Unidades a Ingresar <span style="color:red">*</span></label>
+                        <input type="number" id="ingreso-unidades" placeholder="0" min="1">
+                    </div>
+                    <div class="campo">
+                        <label>Valor de Compra</label>
+                        <input type="number" id="ingreso-valor-compra" placeholder="0.00" min="0" step="0.01">
+                    </div>
+                    <div class="campo">
+                        <label>Valor de Venta <span style="color:red">*</span></label>
+                        <input type="number" id="ingreso-valor-venta" placeholder="0.00" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div id="msg-form-ingreso" class="msg-error"></div>
+
+                <div style="text-align:right; margin-top:8px;">
+                    <button class="btn-secundario" onclick="limpiarFormulario()" style="margin-right:8px;">Limpiar</button>
+                    <button class="btn-primario" onclick="registrarIngreso()">Registrar Ingreso</button>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <p class="tarjeta-titulo">Historial de Ingresos</p>
+
+                <div class="barra-herramientas" style="margin-bottom:12px;">
+                    <div class="grupo-busqueda">
+                        <label style="font-size:12px;font-weight:700;color:#444">Desde:</label>
+                        <input type="date" id="filtro-fecha-inicio">
+                        <label style="font-size:12px;font-weight:700;color:#444">Hasta:</label>
+                        <input type="date" id="filtro-fecha-fin">
+                        <input type="text" id="filtro-lote-busqueda" placeholder="Filtrar por lote...">
+                        <button class="btn-secundario" onclick="filtrarIngresos()">Filtrar</button>
+                        <button class="btn-secundario" onclick="limpiarFiltros()">Ver todos</button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-datos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Libro</th>
+                                <th>Lote</th>
+                                <th>Unidades</th>
+                                <th>V. Compra</th>
+                                <th>V. Venta</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-ingresos-body">
+                            <tr class="sin-registros"><td colspan="7">Cargando ingresos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/ingresos.js"></script>
+
+</body>
+</html>

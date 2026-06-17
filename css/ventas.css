@@ -1,0 +1,31 @@
+.separador-seccion {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a3c72;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e8f0fc;
+    padding-bottom: 6px;
+    margin: 14px 0 12px;
+}
+
+.fila-agregar-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+#contenedor-items {
+    margin-top: 10px;
+}
+
+.tabla-items {
+    font-size: 13px;
+}
+
+.tabla-items thead th {
+    background-color: #2660c2;
+    font-size: 11px;
+}

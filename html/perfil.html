@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioCECAR – Mi Perfil</title>
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="barra-lateral">
+        <div class="logo">Biblio<span class="resaltado">CECAR</span></div>
+        <div class="info-usuario-barra">
+            <p id="barra-nombre">Cargando...</p>
+            <small id="barra-rol"></small>
+        </div>
+        <nav>
+            <ul>
+                <li id="menu-dashboard"><a href="dashboard.html"><span class="icono-menu">🏠</span> Panel Principal</a></li>
+                <li id="menu-usuarios"><a href="usuarios.html"><span class="icono-menu">👥</span> Usuarios</a></li>
+                <li id="menu-libros"><a href="libros.html"><span class="icono-menu">📚</span> Libros</a></li>
+                <li id="menu-clientes"><a href="clientes.html"><span class="icono-menu">🧑‍💼</span> Clientes</a></li>
+                <li id="menu-ingresos"><a href="ingresos.html"><span class="icono-menu">📥</span> Ingresos</a></li>
+                <li id="menu-inventario"><a href="inventario.html"><span class="icono-menu">📦</span> Inventario</a></li>
+                <li id="menu-ventas"><a href="ventas.html"><span class="icono-menu">🛒</span> Ventas</a></li>
+                <li id="menu-lotes"><a href="lotes.html"><span class="icono-menu">🏷️</span> Lotes</a></li>
+                <div class="separador-menu">Cuenta</div>
+                <li class="activo"><a href="perfil.html"><span class="icono-menu">👤</span> Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()"><span class="icono-menu">🚪</span> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <div class="pie-barra">CECAR © 2026</div>
+    </aside>
+
+    <main class="contenido-principal">
+        <header class="encabezado">
+            <h1>Mi Perfil</h1>
+            <div class="info-usuario-header">
+                <span class="nombre" id="nombre-usuario"></span>
+                <span class="etiqueta-rol" id="rol-usuario"></span>
+            </div>
+        </header>
+
+        <div class="area-contenido">
+
+            <div id="msg-perfil" class="msg-exito" style="display:none;"></div>
+
+            <div class="tarjeta" style="max-width: 640px;">
+                <p class="tarjeta-titulo">Información de la Cuenta</p>
+
+                <div class="perfil-avatar">
+                    <div class="avatar-circulo" id="avatar-iniciales">??</div>
+                    <div class="perfil-nombre-bloque">
+                        <h2 id="perfil-nombre-completo">—</h2>
+                        <span class="etiqueta-rol" id="perfil-rol-badge">—</span>
+                    </div>
+                </div>
+
+                <div class="separador-campos"></div>
+
+                <div class="fila-2">
+                    <div class="campo campo-solo-lectura">
+                        <label>Nombre completo</label>
+                        <p id="perfil-dato-nombre">—</p>
+                    </div>
+                    <div class="campo campo-solo-lectura">
+                        <label>Correo electrónico</label>
+                        <p id="perfil-dato-correo">—</p>
+                    </div>
+                </div>
+
+                <div class="fila-2">
+                    <div class="campo campo-solo-lectura">
+                        <label>Rol en el sistema</label>
+                        <p id="perfil-dato-rol">—</p>
+                    </div>
+                    <div class="campo campo-solo-lectura">
+                        <label>Estado</label>
+                        <p id="perfil-dato-estado">—</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tarjeta" style="max-width: 640px;">
+                <p class="tarjeta-titulo">Cambiar Contraseña</p>
+
+                <div class="campo">
+                    <label>Contraseña actual <span style="color:red">*</span></label>
+                    <input type="password" id="pass-actual" placeholder="Ingresa tu contraseña actual">
+                </div>
+
+                <div class="fila-2">
+                    <div class="campo">
+                        <label>Nueva contraseña <span style="color:red">*</span></label>
+                        <input type="password" id="pass-nueva" placeholder="Mínimo 6 caracteres">
+                    </div>
+                    <div class="campo">
+                        <label>Confirmar contraseña <span style="color:red">*</span></label>
+                        <input type="password" id="pass-confirmar" placeholder="Repite la nueva contraseña">
+                    </div>
+                </div>
+
+                <div id="msg-cambio-pass" class="msg-error" style="display:none; margin-bottom: 10px;"></div>
+
+                <button class="btn-primario" onclick="cambiarContrasena()">Actualizar Contraseña</button>
+
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/perfil.js"></script>
+
+</body>
+</html>
