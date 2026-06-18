@@ -95,9 +95,12 @@ function crearLote() {
     fetch(APIURL + '/api/Lotes', {
         method: 'POST',
         headers: obtenerEncabezados(),
-        body: JSON.stringify(cuerpo)
+        body: JSON.stringify(codigo)
     })
-    .then(function (res) { return res.json(); })
+    .then(function (res) {
+    if (res.ok) return { exito: true };
+    return res.json();
+})
     .then(function (datos) {
         if (datos.error || datos.mensaje) {
             msgForm.textContent   = datos.mensaje || 'Error al registrar el lote.';

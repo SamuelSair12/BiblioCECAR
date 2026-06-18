@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: smartbooks_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: smartbooksdb
+      MYSQL_USER: smartuser
+      MYSQL_PASSWORD: smartpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    networks:
+      - smartbooks_network
+
+  api:
+    image: smartbooks-backend-api:latest
+    restart: on-failure
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__MySql: "Server=db;Port=3306;Database=smartbooksdb;User=smartuser;Password=smartpassword;"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - smartbooks_network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "9090:8080"
+    depends_on:
+      - db
+    networks:
+      - smartbooks_network
+  
+
+volumes:
+  mysql_data:
+
+networks:
+  smartbooks_network:
+    driver: bridge

@@ -171,11 +171,15 @@ function guardarLibro() {
         mostrarMensajeModal('El valor de venta es obligatorio y debe ser positivo.', 'error');
         return;
     }
+    if (!tipo || (parseInt(tipo) !== 1 && parseInt(tipo) !== 2)) {
+    mostrarMensajeModal('Selecciona un tipo: Student\'s Book o Workbook.', 'error');
+    return;
+}
 
     var cuerpo = {
         nombre:          nombre,
         nivel:           nivel,
-        tipo:            tipo ? parseInt(tipo) : null,
+        tipo: parseInt(tipo) || 0,
         edicion:         edicion,
         unidades:        parseInt(unidades),
         lote:            lote || null,

@@ -1,5 +1,3 @@
-const API_URL = "http://localhost:8080/api";
-
 function mostrarMensajeLogin(texto, tipo) {
     var el = document.getElementById('msg-login');
     if (!el) return;
@@ -45,29 +43,50 @@ function autenticar() {
     btn.disabled = true;
     btn.textContent = 'Verificando...';
 
-    iniciarSesion(correo, password, rol);
+    iniciarSesion(correo, password);
 }
 
-function iniciarSesion(correo, password, rolSeleccionado) {
-    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fX0.SmartBooksSecureToken2026"; 
-    var infoUsuario = { 
-        email: correo, 
-        rol: rolSeleccionado || "1" 
-    };
+function iniciarSesion(correo, password) {
+    var url = APIURL + '/api/Seguridad/iniciar-sesion';
 
-    localStorage.setItem('token', token);
-    localStorage.setItem('usuario', JSON.stringify(infoUsuario));
-
-    mostrarMensajeLogin('Acceso concedido. Redirigiendo...', 'exito');
-
-    setTimeout(function () {
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: correo, password: password })
+    })
+    .then(function (respuesta) {
+        return respuesta.json();
+    })
+    .then(function (datos) {
         var btn = document.getElementById('btn-ingresar');
-        if (btn) {
-            btn.disabled = false;
-            btn.textContent = 'Ingresar al Sistema';
+        btn.disabled = false;
+        btn.textContent = 'Ingresar al Sistema';
+
+        if (datos.token !== undefined && datos.token !== null && datos.token !== '') {
+            
+            localStorage.setItem('token', datos.token);
+            localStorage.setItem('usuario', JSON.stringify(datos.usuario));
+
+            mostrarMensajeLogin('Acceso concedido. Redirigiendo...', 'exito');
+
+            setTimeout(function () {
+                redirigirPaginaInicio(datos.usuario);
+            }, 800);
+
+        } else {
+            mostrarMensajeLogin(
+                datos.mensaje || datos.message || 'Correo o contraseña incorrectos.',
+                'error'
+            );
         }
-        redirigirPaginaInicio(infoUsuario);
-    }, 800);
+    })
+    .catch(function (error) {
+        var btn = document.getElementById('btn-ingresar');
+        btn.disabled = false;
+        btn.textContent = 'Ingresar al Sistema';
+        mostrarMensajeLogin('Error de conexión. Verifica la red e intenta de nuevo.', 'error');
+        console.error('Error en la petición de login:', error);
+    });
 }
 
 function redirigirPaginaInicio(usuario) {
@@ -75,9 +94,12 @@ function redirigirPaginaInicio(usuario) {
 
     if (rol === '1' || rol === 'admin' || rol === 'administrador') {
         window.location.href = '../html/dashboard.html';
+
     } else if (rol === '2' || rol === 'bibliotecario' || rol === 'operador') {
         window.location.href = '../html/dashboard.html';
+
     } else {
+        
         window.location.href = '../html/libros.html';
     }
 }

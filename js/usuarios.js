@@ -146,8 +146,8 @@ function guardarUsuario() {
         return;
     }
 
-    if (!modoEdicion && password.length < 6) {
-        mostrarMensajeModal('La contraseña debe tener mínimo 6 caracteres.', 'error');
+    if (!modoEdicion && password.length < 8) {
+        mostrarMensajeModal('La contraseña debe tener mínimo 8 caracteres.', 'error');
         return;
     }
 
@@ -159,7 +159,7 @@ function guardarUsuario() {
     var cuerpo = {
         identificacion: identificacion,
         nombres:  nombres,
-        correo:   correo,
+        email:    correo,
         rol:      parseInt(rol),
         estado:   true
     };
